@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
     mariadb:
-        image: mariadb
+        build: .
         container_name: be_181841_db
         networks:
             - be_181841
@@ -13,6 +13,8 @@ services:
                  condition: on-failure
                  delay: 3s
                  max_attempts: 5
+        ports:
+            - 3306:3306
      
     prestashop:
         image: pdurkalec/be_181841
