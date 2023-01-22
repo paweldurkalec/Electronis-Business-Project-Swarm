@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+    mariadb:
+        image: mariadb
+        container_name: be_181841_db
+        networks:
+            - be_181841
+        environment:
+            MYSQL_ROOT_PASSWORD: student
+        deploy:
+             restart_policy:
+                 condition: on-failure
+                 delay: 3s
+                 max_attempts: 5
+     
+    prestashop:
+        image: pdurkalec/be_181841
+        container_name: be_181841_shop
+        environment:
+            DB_SERVER: mariadb
+            PS_DOMAIN_SSL: localhost:18184
+            ALLOW_OVERRIDE: 1
+            PS_INSTALL_AUTO: 0
+            PS_ERASE_DB: 0
+            DB_USER: be_181841
+            DB_PASSWD: student
+            DB_NAME: be_181841
+            PS_DEV_MODE: 0
+        ports:
+            - 18184:443
+        networks:
+            - be_181841
+        deploy:
+             restart_policy:
+                 condition: on-failure
+                 delay: 3s
+                 max_attempts: 5
+                    
+
+networks:
+    be_181841:
