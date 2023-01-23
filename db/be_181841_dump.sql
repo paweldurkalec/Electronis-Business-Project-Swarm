@@ -19,12 +19,7 @@
 -- Table structure for table `ps_access`
 --
 
-DROP DATABASE IF EXISTS be_181841;
-CREATE DATABASE be_181841;
 USE be_181841;
-CREATE USER IF NOT EXISTS 'be_181841'@'%' IDENTIFIED BY 'student';
-GRANT ALL PRIVILEGES ON be_181841.* TO 'be_181841'@'%';
-FLUSH PRIVILEGES;
 
 DROP TABLE IF EXISTS `ps_access`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
